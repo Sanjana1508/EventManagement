@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang-"en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Event Management</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<h3>Event Management</h3>
+
+<hr>
+<div class="container" >
+  <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+  <a th:href="@{/events/addEvent}" class="btn btn-primary btn-sm mb-3">
+    Add Event
+  </a>
+  </div>
+  <table class="table table=bordered table-striped">
+    <thead class="thead-dark">
+    <tr class="table-dark">
+      <th>Event Name</th>
+      <th>Event Location</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th th:if="${#authorization.expression('hasRole(''ADMIN'')')}">Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tempEvent : ${events}">
+      <td th:text="${tempEvent.name}" />
+      <td th:text="${tempEvent.location}" />
+      <td th:text="${tempEvent.category}" />
+      <td th:text="${tempEvent.date}" />
+      <td th:text="${tempEvent.price}" />
+      <td>
+        <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+        <a th:href="@{/events/updateEvent(eventId=${tempEvent.id})}"
+          class="btn btn-info btn-sm">
+          Update
+        </a>
+        <a th:href="@{/events/delete(eventId=${tempEvent.id})}"
+           class="btn btn-danger btn-sm"
+           onclick="if (!(confirm('Are you sure you want to delete this book?'))) return false">
+          Delete
+        </a>
+        </div>
+      </td>
+    </tr>
+
+    </tbody>
+
+  </table>
+</div>
+
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-3">
+      <form th:action="@{/logout}" method="POST">
+        <input  class="form-control btn btn-info" type="submit" value="Logout"/>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+    >
+<head>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+  <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+  <title>User</title>
+</head>
+<body>
+<div>
+  <h1>Welcome</h1>
+<br>
+  <div class="content">
+    <p>UserName :
+      <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+    </p>
+  </div>
+  <div class="content">
+    <p>UserName :
+      <span th:text="${#authentication.getPrincipal().getAuthorities()}"></span>
+    </p>
+  </div>
+
+<div class="content">
+  <a href="/events/list" class="btn btn-info btn-lg">Events List</a>
+</div>
+
+  <div class="content" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+    <a href="/users/list" class="btn btn-info btn-lg">Users List</a>
+  </div>
+
+</div>
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-3">
+      <form th:action="@{/logout}" method="POST">
+        <input  class="form-control btn btn-info btn-sm" type="submit" value="Logout"/>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

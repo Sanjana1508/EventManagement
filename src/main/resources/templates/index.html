@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      >
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <title>Index</title>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Event Management System</h1>
+        <p class="lead">Event management is the application of creation and development of small and/or large-scale personal
+            or corporate events such as festivals, conferences, ceremonies, weddings, formal parties, concerts, or conventions. It involves studying the
+            brand, identifying its target audience, devising the event concept, and coordinating the technical aspects before actually launching the event.
+            <br><br>
+            The events industry now includes events of all sizes from the Olympics down to business breakfast meetings. Many industries, celebrities,
+            charitable organizations, and interest groups hold events in order to market their label, build business relationships, raise money, or celebrate
+            achievement.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-3">
+            <form th:action="@{/user}" method="POST">
+                <input  class="form-control btn btn-info btn-lg" type="submit" value="Login"/>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
